@@ -1,0 +1,26 @@
+class Solution {
+private:                 //creating a function here
+    void solve(vector<int> nums,vector<vector<int> >& ans, int index){
+        //base case 
+        if(index >= nums.size()){  //If index greater than the size of given element than return
+            ans.push_back(nums);  //here we stores the nums in the answer
+            return;
+        }
+        
+    for(int j = index; j<nums.size();j++){
+        swap(nums[index], nums[j]);  //swap the elements
+        solve(nums,ans, index+1); 
+        
+        //backtrack - so that swapping element can be used again
+         swap(nums[index], nums[j]);
+       }
+    }
+    
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int> >ans;    //stores answer in the vector
+        int index = 0;          
+        solve(nums, ans, index);  //function call
+        return ans;  
+    }
+};

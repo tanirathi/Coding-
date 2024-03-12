@@ -1,0 +1,23 @@
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {        //head of node and number of nodes n is given
+        
+        ListNode * start = new ListNode();   //declare a domy node"start "" 
+        start -> next = head;         //Assign it as next to head
+        ListNode* fast = start;      //Assign two pointers that is fast and slow
+        ListNode* slow = start;
+        
+        for(int i=1; i<=n; ++i)
+            fast = fast->next;
+        
+        while(fast->next != NULL)   //Traverse Till fast pointer doesn't reach to null node
+        {
+            fast = fast->next;
+            slow = slow->next ;
+        }
+        
+        slow->next = slow->next->next;         //break the link after it reaches
+        
+        return start-> next;    //so the domy node next will be the head of new node that we are returning
+    }
+};

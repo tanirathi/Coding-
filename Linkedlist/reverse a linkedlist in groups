@@ -1,0 +1,26 @@
+class Solution
+{
+    public:
+    struct node *reverseIt (struct node *head, int k)   // function takes two parameters: head pointer to the head,kinteger representing the group size
+    { 
+    
+         node* curr=head;     //pointer to the current node previous  node and next node
+        node* prev=NULL; 
+        node* nex= NULL;
+        
+        int count=0;
+        while(curr && count<k) {   // this loop iterates through the list until either the end of the list is reached (curr == NULL
+            nex=curr->next;
+            curr->next=prev;
+            prev = curr;
+            curr=nex;
+            count++;
+        }
+        
+        if(nex!=NULL) {    //After reversing k nodes, if there are more nodes remaining (nex != NULL), it recursively calls reverseIt with the nex (next) node as the head of the sublist.
+            head->next = reverseIt(nex,k);
+        }
+        
+        return prev;
+     }
+    };

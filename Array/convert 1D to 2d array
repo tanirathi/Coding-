@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<vector<int>> construct2DArray(vector<int>& original, int m, int n) {    //m: An integer representing the number of rows and n: representing the number of columns in the 2D array.   
+      
+    vector<vector<int>>ans(m, vector<int>(n));    //A 2D vector ans is declared and initialized with m rows and n columns
+        int x=0;
+        
+        if(m*n!=original.size()){      //check ensures that the total number of elements in the 2D array (m*n) matches the size of the original vector. If they don't match, it means it's impossible to construct the 2D array with the given dimensions, so an empty vector of vectors is returned.
+
+            return {};
+        }
+        
+        for(int i=0; i<m; i++){
+            for(int j=0; j<n; j++){          //The value of original[x] is assigned to the element at position (i, j)
+                ans[i][j]= original[x++];
+            }
+        }
+        return ans;
+    }
+};

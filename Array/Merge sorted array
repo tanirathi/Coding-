@@ -1,0 +1,25 @@
+class Solution {
+public:
+        void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        int left=m-1;      // Last index of nums1
+        int right=0;        // First index of nums2
+          
+    //  // It compares elements from the end of nums1 and the beginning of nums2. If the element in nums1 is greater than the element in nums2, it swaps them.
+        while(left>=0 && right<n){       
+            if(nums1[left]>nums2[right]){
+                swap(nums1[left],nums2[right]);
+                left--;
+                right++;
+            }else{
+                break;
+            }
+        }
+            
+        for(int i=m;i<m+n;i++){
+            nums1[i]=nums2[i-m];
+        }
+            
+        sort(nums1.begin(),nums1.end());    // here the entire nums1 array is sorted to ensure that all elements are in ascending order.
+        return ;
+    }
+};

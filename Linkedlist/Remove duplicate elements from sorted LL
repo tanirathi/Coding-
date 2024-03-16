@@ -1,0 +1,23 @@
+Node *removeDuplicates(Node *head)
+{
+ 
+ if(head == NULL){         //Check for Empty List
+     return NULL;
+ }
+   
+ Node* curr = head;          // pointer curr is initialized and assigned the value of the head of the list
+ 
+ while(curr != NULL){          //The function enters a while loop that continues until curr reaches the end of the list (i.e., it becomes NULL).
+     if((curr->next!=NULL) && curr->data==curr->next->data){     //If a duplicate is found, the next node (curr->next) is saved in a pointer called next.
+         Node* next  = curr->next->next;        
+         Node* node_del = curr->next;
+         delete node_del;
+         curr->next = next;
+     }
+     else{
+         curr = curr->next;          //If no duplicate is found, the curr pointer is moved to the next node in the list.
+     }
+ }
+  
+ return head;                //Once all duplicates have been removed, the function returns the head pointer of the modified list.
+}

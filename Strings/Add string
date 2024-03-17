@@ -1,0 +1,32 @@
+class Solution {
+public:
+    string addStrings(string num1, string num2) {
+    // Initialize variables
+    int carry = 0; // Carry value for addition
+    int i1 = num1.size() - 1, i2 = num2.size() - 1; // Pointers to the last digits of num1 and num2 respectively
+    string result; // String to store the result of addition
+
+    // Iterate over both strings from right to left until at least one string has been fully traversed or there's a carry value
+    while (i1 >= 0 || i2 >= 0 || carry >= 1) {
+        // Extract digits from num1 and num2, or treat them as 0 if the index is out of bounds
+        int digit1 = i1 >= 0 ? num1[i1--] - '0' : 0;
+        int digit2 = i2 >= 0 ? num2[i2--] - '0' : 0;
+
+        // Calculate sum of digits along with the carry from the previous iteration
+        int sum = digit1 + digit2 + carry;
+
+        // Update carry by dividing the sum by 10
+        carry = sum / 10;
+
+        // Update sum by taking the remainder when divided by 10
+        sum = sum % 10;
+
+        // Convert sum to a character and prepend it to the result string
+        result = to_string(sum) + result;
+    }
+
+    // Return result, if it's an empty string return "0" to indicate sum is zero
+    return result == "" ? "0" : result;
+ }
+};
+    

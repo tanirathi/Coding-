@@ -1,0 +1,16 @@
+class Solution {
+public:
+    bool canConstruct(string s, int k) {            //The function canConstruct takes two parameters: s - string and k - integer
+ 
+        if (s.size() < k) return false;     // if the length of the string s is less than k return false
+        
+        vector<int> freq(26);      //It initializes a vector freq of size 26
+        for (auto ch : s) freq[ch - 'a']++;
+        
+        int odd = 0;             //It initializes a variable odd to count the number of characters with odd frequencies.
+
+        for (auto f : freq) odd += (f % 2);   //It iterates through each frequency f in the freq vector, and if the frequency is odd
+        
+        return odd <= k;
+    }
+};

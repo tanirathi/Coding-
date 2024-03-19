@@ -1,0 +1,35 @@
+class Solution {
+public:
+    
+string removeStars(string s) {    // Define a function named removeStars which takes a string s as input.
+    int n = s.length();  // Determine the length of the input string.
+    
+    stack<char> st;    // Initialize a stack of characters to store non-asterisk characters.
+
+    for(int i=0; i<n; i++){     //Iterate through each character of the input string.
+       
+        if(s[i] != '*'){     // If the current character is not an asterisk, push it onto the stack.
+            st.push(s[i]);
+        }
+        
+        // If the current character is an asterisk, pop the top character from the stack.
+        else{
+            st.pop();
+        }
+    }
+
+    // Initialize an empty string to store the result.
+    string ans = "";
+
+    while(!st.empty()){  // While the stack is not empty, append the top character of the stack to the result string and pop it from the stack.
+        ans.push_back(st.top());
+        st.pop();
+    }
+
+    reverse(ans.begin(), ans.end());   
+    // Reverse the result string to get the correct order of characters.
+    
+   
+    return ans;       // Return the modified string with all asterisks removed.
+   }  
+};

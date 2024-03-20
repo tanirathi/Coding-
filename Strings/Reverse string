@@ -1,0 +1,19 @@
+class Solution {
+public:
+   
+void reverseString(vector<char>& s) {       // Define a function to reverse a string in-place
+    // Define variables to track indices for swapping
+    int end = s.size() - 1; // index of the last character
+    int start = 0; // index of the first character
+     
+    while (start < end) {      // Iterate through the string until reaching the middle
+        // Swap characters at start and end indices
+        char temp = s[start];
+        s[start] = s[end];
+        s[end] = temp;
+        
+        start++;     // Move to the next pair of characters
+        end--;
+    }
+ }
+};

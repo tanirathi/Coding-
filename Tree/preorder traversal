@@ -1,0 +1,20 @@
+void preorder(vector<int> &ans, Node* root) // This function performs a preorder traversal of a binary tree and stores the results in a vector.
+{
+    
+    if(root == NULL)           
+        return;
+    
+    ans.push_back(root->data);  // Push the data of the current node into the vector
+    preorder(ans, root->left);   // Recursively traverse the left subtree
+    preorder(ans, root->right);      // Recursively traverse the right subtree
+}
+
+
+//Function to return a list containing the preorder traversal of the tree.
+vector <int> preorder(Node* root)
+{
+    
+  vector<int> ans;
+  preorder(ans,root);
+  return ans;
+}

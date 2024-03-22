@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int findTheLongestBalancedSubstring(string s) {
+     int res = 0;               // Variable to store the length
+     string temp = "01";            // Start with the smallest possible balanced substring
+     while(temp.size() <= s.size()){     // Continue until the substring length exceeds the length of the input string
+        if(s.find(temp) != string::npos)     // Check if the current balanced substring is present in the input string
+            res = temp.size();             // If found, update the length of the longest balanced substring
+        temp = '0' + temp + '1'; // Generate the next potential balanced substring by adding '0' at the beginning and '1' at the 
+     }
+         return res;        // Return the length of the longest balanced substring found
+    }
+};

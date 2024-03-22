@@ -1,0 +1,81 @@
+class Solution{
+public:
+    /* Should return minimum distance between a and b
+    in a tree with given root*/
+    
+    void dis(Node*root,int a,int &d){   // Function to calculate the distance between a node with data 'a' and the root
+        int temp=0;            // Initialize temporary distance variable and a queue for BFS traversal
+        queue<Node*> q; 
+        q.push(root);            // Push the root node into the queue
+        
+        // Perform BFS traversal
+        while(!q.empty())
+        {
+            int x = q.size(); // Get the current size of the queue
+            while(x--)
+            {
+                Node* cur=q.front();    // Get the front element of the queue
+                q.pop();                  // Remove the front element from the queue
+                
+                // If the current node's data matches 'a', update the distance and return
+                if(cur->data==a)
+                {
+                    d=temp;
+                    return ;
+                }
+                
+                        // If the current node has a left child, push it into the queue
+                if(cur->left)
+                    q.push(cur->left);
+                
+                       // If the current node has a right child, push it into the queue
+                if(cur->right)
+                    q.push(cur->right);
+            }
+            temp++;               // Increment the distance after exploring each level
+        }
+    }
+    
+    // Function to find the Lowest Common Ancestor (LCA) of nodes with data 'a' and 'b'
+    Node* lca(Node*root,int a,int b){
+        if(root==nullptr){
+            return root;
+        }
+        if(root->data== a || root->data == b){
+            return root;
+        }
+        
+        //here Recursively find LCA in left and right subtrees
+        Node*leftans=lca(root->left,a,b);
+        Node*rightans=lca(root->right,a,b);
+        
+        // If one of the subtrees returns null, return the other non-null subtree
+        if(leftans==nullptr && rightans==nullptr){
+            return nullptr;
+        }
+        else if(leftans==nullptr && rightans!=nullptr){
+            return rightans;
+        }
+        else if(leftans!=nullptr && rightans==nullptr){
+            return leftans;
+        }
+        else{
+            return root;            // If both subtrees return non-null, then current node is LCA
+        }
+    }
+    
+    // Function to find the distance between nodes with data 'a' and 'b' in the tree
+    int findDist(Node* root, int a, int b) {
+        // Find the LCA of nodes with data 'a' and 'b'
+        Node* lc=lca(root,a,b);
+        int disa=0;
+        int disb=0;
+        
+        // Calculate distances from LCA to nodes 'a' and 'b'
+        dis(lc,a,disa);
+        dis(lc,b,disb);
+        
+        // Return the sum of distances between LCA and nodes 'a' and 'b'
+        return disa+disb;
+    }
+};

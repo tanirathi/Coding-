@@ -1,0 +1,17 @@
+class Solution {
+public:
+   
+bool isAnagram(string s, string t) {           // Function to check if two strings are anagrams
+    
+    if(s.length() != t.length()){         // Check if the lengths of the strings are different, if so, they cannot be anagrams
+        return false;
+    }  
+    sort(s.begin(),s.end());      // Sort both strings in alphabetical order
+    sort(t.begin(),t.end());
+
+    if(s == t){        // Check if the sorted strings are equal, if so, they are anagrams
+        return true;
+    }
+    return false;     // If not equal, they are not anagrams
+   }
+};

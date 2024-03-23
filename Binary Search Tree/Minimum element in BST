@@ -1,0 +1,7 @@
+class Solution {
+public:   
+    int minValue(Node* root) {
+        if(root->left) return minValue(root->left);             //if root left exist than return to left node for next iteration
+        else return (root->data);
+    }
+};

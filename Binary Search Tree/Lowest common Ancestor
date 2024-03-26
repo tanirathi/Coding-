@@ -1,0 +1,19 @@
+class Solution{
+    public:
+        Node* LCA(Node *root, int n1, int n2){
+
+    while(root!=nullptr){
+    if(root->data < n1 && root->data < n2)  // Traverse right subtree if current node's data is less than both n1 and n2
+    {
+        root = root->right;
+    }
+    else if(root->data > n1 && root->data > n2)    // Traverse left subtree if current node's data is greater than both n1 and n2
+    {
+        root = root->left;
+    }
+    else          // If current node's data is between n1 and n2, break the loop
+        break;
+}
+return root;       // Return the node where the search ends or the last node visited
+ }
+};

@@ -1,0 +1,15 @@
+class Solution {
+public:
+
+    
+    int sumOfLeafNodes(Node* root) {    // Function to calculate the sum of leaf nodes in a binary tree
+        if (root == nullptr)            //If the root is null, return 0 as there are no leaf nodes
+            return 0;
+            
+        if (root->left == nullptr && root->right == nullptr)    // // If the current node is a leaf node (both left and right children are null), return its data
+            return root->data;
+            
+        return sumOfLeafNodes(root->left) + sumOfLeafNodes(root->right);   //If the current node is not a leaf node, recursively calculate the sum of leaf nodes
+        // by summing up the leaf nodes in the left and right subtrees
+    }
+};

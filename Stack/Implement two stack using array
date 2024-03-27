@@ -1,0 +1,54 @@
+class twoStacks
+{
+public:
+    int size;               // Size of the array used for storing elements of both stacks
+    int *arr;              // Pointer to the dynamically allocated array
+    int top1, top2;            //Variables to track the top elements of both stacks
+    
+    // Constructor for initializing the two stacks
+    twoStacks()
+    {
+        int n = 1000;    // Maximum size for the array
+        size = n;        // Assigning the size of the array
+        arr = new int[n]; // Dynamically allocating memory for the array
+        top1 = -1;       // Initializing top of stack 1 to -1 (empty)
+        top2 = size;     // Initializing top of stack 2 to 'size' (empty)
+    }
+ 
+    // Function to push an integer into stack1
+    void push1(int x)
+    {
+        top1++;         // Move top of stack1 to the next index
+        arr[top1] = x;  // Store the integer 'x' at the top of stack1
+    }
+    
+    // Function to push an integer into stack2
+    void push2(int x)
+    {
+        arr[--top2] = x; // Store the integer 'x' at the top of stack2 and decrement top of stack2
+    }
+    
+    // Function to remove an element from top of stack1
+    int pop1()
+    {
+        if (top1 == -1) // If stack1 is empty
+        {
+            return -1;  // Return -1 to indicate underflow
+        }
+        int data = arr[top1]; // Get the element at the top of stack1
+        top1--;               // Decrement top of stack1
+        return data;          // Return the removed element
+    }
+    
+    // Function to remove an element from top of stack2
+    int pop2()
+    {
+        if (top2 == size) // If stack2 is empty
+        {
+            return -1;   // Return -1 to indicate underflow
+        }
+        int data = arr[top2]; // Get the element at the top of stack2
+        top2++;               // Increment top of stack2
+        return data;          // Return the removed element
+    }
+};

@@ -1,0 +1,27 @@
+class solution
+{
+    public:
+    //bool Function to check whether a Binary Tree is BST or not.
+    
+    bool isbst(Node* root,int min,int max){
+        if(root==NULL){
+            return true;
+        }
+        
+
+        if(root->data > min && root->data < max){            // This condition checks whether the data value of the current node falls within the range (min, max).  
+            bool left = isbst(root->left,min,root->data);    // If it does, it recursively checks the left and right subtrees.
+            bool right = isbst(root->right,root->data,max);    // For the left subtree, the maximum value becomes the data value of the current node
+            return left && right;                        // If both left and right subtrees are valid BSTs, it returns true; otherwise, false.
+        } 
+        
+        return false;   // If the condition in the above if-statement is not satisfied return false
+    }
+    
+    bool isBST(Node* root) 
+    
+    //This is the entry point function to check if the given binary tree is a BST. It calls the `isbst` function with the root of the tree and the minimum and maximum possible values for a node in the BST.
+    {
+        isbst(root,INT32_MIN,INT32_MAX);
+    }
+};

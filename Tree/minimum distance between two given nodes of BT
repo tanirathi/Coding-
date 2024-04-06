@@ -1,15 +1,14 @@
-
 class Solution{
 public:
     // Function to find the Lowest Common Ancestor (LCA) of nodes with data 'a' and 'b'
     Node* lca(Node* root,int a,int b){
-        if(!root) return NULL;       // If the root is null, return null
-        if(root->data == a or root->data == b) return root;  // If the data of the root matches either 'a' or 'b', return the root
-        Node* l = lca(root->left, a, b);     // Recursively find LCA in left and right subtrees
+        if(!root) return NULL;                                 // If the root is null, return null
+        if(root->data == a or root->data == b) return root;    // If the data of the root matches either 'a' or 'b', return the root
+        Node* l = lca(root->left, a, b);                      // Recursively find LCA in left and right subtrees
         Node* r = lca(root->right, a, b);
-        if(l and r) return root;     // If both left and right subtrees return non-null, current root is LCA
-        if(l) return l;               // If only left subtree returns non-null, return left subtree result
-        return r;                   // If only right subtree returns non-null, return right subtree result
+        if(l and r) return root;                          // If both left and right subtrees return non-null, current root is LCA
+        if(l) return l;                                  // If only left subtree returns non-null, return left subtree result
+        return r;                                       // If only right subtree returns non-null, return right subtree result
     }
     
     

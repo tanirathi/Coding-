@@ -1,6 +1,6 @@
 class Solution{
     public:
-    // Create a vector to store the zigzag traversal result
+     // Create a vector to store the zigzag traversal result
 vector<int> zigZagTraversal(Node* root){
     vector<int> ans;
     queue<Node*> q;

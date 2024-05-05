@@ -1,0 +1,23 @@
+class Solution {
+    private:
+    // Private helper function for Depth First Search (DFS) traversal
+    void dfs(int node, vector<int> adj[], int vis[], vector<int> &ans){
+        vis[node] = 1;            // Mark the current node as visited
+        ans.push_back(node);          // Add the current node to the traversal sequence
+        for(auto it : adj[node]){        // Iterate over the adjacent nodes of the current node
+            // If an adjacent node is not visited, recursively call dfs
+            if(!vis[it]){
+                dfs(it, adj, vis, ans);
+            }
+        }
+    }
+
+  public:
+    // Function to return a list containing the DFS traversal of the graph
+    vector<int> dfsOfGraph(int V, vector<int> adj[]) {
+        vector<int> ans;     // Initialize the traversal sequence vector
+        int vis[V] = {0};       // Initialize an array to keep track of visited nodes
+        dfs(0, adj, vis, ans);      // Perform DFS traversal starting from node 0
+        return ans;
+    }
+};

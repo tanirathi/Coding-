@@ -1,0 +1,21 @@
+class Solution {
+public:
+    // Function to convert a sorted array to a balanced binary search tree
+    TreeNode* sortedArrayToBST(vector<int>& nums) {
+        if(nums.size() == 0)  // If the array is empty, return NULL
+            return NULL;
+        return bst(nums, 0, nums.size() - 1); // Call the helper function to construct the BST
+    }
+    // Helper function to construct the binary search tree recursively
+    TreeNode* bst(vector<int>& nums, int left, int right) {
+        if(left > right)  // Base case: if left pointer exceeds right pointer, return NULL
+            return NULL;
+        
+        int midpoint = left + (right - left) / 2;  // Calculate the midpoint index
+        TreeNode* node = new TreeNode(nums[midpoint]);  // Create a new TreeNode with the value at the midpoint
+        node->left = bst(nums, left, midpoint - 1);  // construct the left nd right subtree 
+        node->right = bst(nums, midpoint + 1, right);
+        
+        return node;
+    }
+};

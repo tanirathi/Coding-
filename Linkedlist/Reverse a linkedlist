@@ -1,0 +1,23 @@
+class Solution
+{
+    public:
+    struct Node* reverseList(struct Node *head)
+    {
+        struct Node *Curr,*Next,*Prev;
+            Curr = head;
+            Prev = NULL;
+            Next = Curr->next;
+            while(Next!=NULL){
+                //cout<<"Data: "<<Curr->data<<endl;
+                Curr->next = Prev;
+                //Next->next = Curr;
+                Prev = Curr;
+                Curr = Next;
+                Next = Next->next;
+            }
+            Curr->next = Prev;
+            return Curr;
+  
+    }
+    
+};

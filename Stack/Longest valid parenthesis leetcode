@@ -1,0 +1,22 @@
+class Solution {
+public:
+    // Function to find the length of the longest valid parentheses substring
+    int longestValidParentheses(string s) {
+        stack<int> t;                    // Stack to keep track of indices of characters
+        t.push(-1);                     // Initialize stack with a base value to handle edge cases
+        int maxi = 0;                   // Variable to store the maximum length of valid parentheses 
+        for (int i = 0; i < (int)s.size(); i++) {             // Iterate through each character in the string
+            if (s[i] == '(') {                      // If the current character is '(', push its index onto the stack
+                t.push(i);
+            } 
+            else {                             // If the current character is ')'
+                t.pop();                        // Pop the top of the stack
+                if (t.empty())     // If the stack becomes empty, push the current index onto the stack to calc the length of valid parentheses later
+                t.push(i);
+                else      // If the stack is not empty, calc the length of the curr valid substring&update the maxi length if the current length is greater
+                    maxi = max(maxi, i - t.top());
+            }
+        }
+        return maxi;
+    }
+};

@@ -1,4 +1,4 @@
-void preorder(vector<int> &ans, Node* root) // This function performs a preorder traversal of a binary tree and stores the results in a vector.
+void preorder(vector<int> &ans, Node* root)   // This function performs a preorder traversal of a binary tree and stores the results in a vector.
 {
     
     if(root == NULL)           

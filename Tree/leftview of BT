@@ -1,3 +1,5 @@
+class Solution{
+    public:
 void solve(Node *root, vector<int>& ans, int level)
 {
     if(!root)
@@ -16,3 +18,4 @@ vector<int> leftView(Node *root)
     solve(root, ans, 0);    // Start the recursion with level 0
     return ans;           
 }
+};

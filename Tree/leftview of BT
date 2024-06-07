@@ -1,6 +1,6 @@
 class Solution{
-    public:
-void solve(Node *root, vector<int>& ans, int level)
+   public:
+   void solve(Node *root, vector<int>& ans, int level)
 {
     if(!root)
         return;               // If the node is null, return immediately
@@ -11,11 +11,10 @@ void solve(Node *root, vector<int>& ans, int level)
     solve(root->left, ans, level + 1); // Recur for the left subtree
     solve(root->right, ans, level + 1); // Recur for the right subtree
 }
-
 vector<int> leftView(Node *root)
 {
     vector<int> ans;          // Vector to store the left view of the tree
     solve(root, ans, 0);    // Start the recursion with level 0
     return ans;           
-}
+  }
 };

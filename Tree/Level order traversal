@@ -1,0 +1,31 @@
+class Solution {
+    public:
+    // Function to return the level order traversal of a tree.
+    vector<int> levelOrder(Node* root) {
+        vector<int> ans;  // Vector to store the result of level order traversal.
+        
+        // If the root is NULL, return the empty vector.
+        if (root == NULL) {
+            return ans;
+        }
+        
+        queue<Node*> q;  // Queue to help with level order traversal.
+        q.push(root);    // Start with the root node.
+        
+        while (!q.empty()) {       // While there are nodes to process in the queue.
+            Node* temp = q.front();      // Get the front node of the queue.
+            q.pop();                      // Remove the front node from the queue.
+            ans.push_back(temp->data);        // Add the node's data to the result.
+            
+            if (temp->left) {              // If the left child exists, push it to the queue.
+                q.push(temp->left);
+            }
+            
+            if (temp->right) {         // If the right child exists, push it to the queue.
+                q.push(temp->right);
+            }
+        }
+        
+        return ans;  // Return the level order traversal result.
+    }
+};

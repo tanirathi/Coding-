@@ -1,0 +1,35 @@
+
+
+class Solution {
+public:
+    // Recursive function to find all unique combinations in A that sum to B.
+    void findCombinations(vector<int>& A, int B, vector<vector<int>>& result, vector<int>& current, int index) {
+        // Base case: if B is 0, we found a valid combination.
+        if (B == 0) {
+            result.push_back(current);
+            return;
+        }
+        
+        // Iterate through the array, starting from the current index.
+        for (int i = index; i < A.size(); i++) {
+            if (i > index && A[i] == A[i - 1]){   // Skip duplicate elements to avoid redundant combinations.
+                continue;
+            } 
+            if (A[i] > B) {   // If the current element is greater than B, further elements will also be greater (sorted array).
+                break;                 
+            }
+            current.push_back(A[i]);      // Include the current element in the combination and recurse.
+            findCombinations(A, B - A[i], result, current, i); 
+            current.pop_back();       // Backtrack: remove the last added element.
+        }
+    }
+
+    // Function to find all unique combinations that sum to B.
+    vector<vector<int>> combinationSum(vector<int>& A, int B) {
+        sort(A.begin(), A.end());       // Sort the input array to handle duplicates and optimize the process.
+        vector<vector<int>> result;
+        vector<int> current;
+        findCombinations(A, B, result, current, 0);
+        return result;
+    }
+};

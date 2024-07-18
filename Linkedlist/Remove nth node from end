@@ -1,3 +1,4 @@
+
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {        //head of node and number of nodes n is given

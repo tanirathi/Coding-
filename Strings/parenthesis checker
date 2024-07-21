@@ -1,0 +1,35 @@
+class Solution{
+public:
+    bool ispar(string x)                 // Function to check if brackets are balanced or not.
+    {
+        stack<char> s;                          // Creating a stack to store opening brackets
+        for(int i = 0; i < x.length(); i++){              // Loop through each character in the string
+            char ch = x[i]; // Get the current character
+
+            if(ch == '(' || ch == '{' || ch == '['){         // If the character is an opening bracket, push it onto the stack
+                s.push(ch);
+            }
+            else{
+                // If the character is a closing bracket
+                if(!s.empty()){                                   // Check if the stack is not empt
+                    char top = s.top();                           // Get the top element of the stack
+                    
+                    // If the current closing bracket matches the corresponding opening bracket
+                    if((ch == ')' && top == '(') || (ch == '}' && top == '{') || (ch == ']' && top == '[')){
+                        s.pop();                         // Pop the matching opening bracket from the stack
+                    }
+                    else{
+                        return false;                // If the closing bracket doesn't match the opening bracket, return false
+                    }
+                }
+                else {
+                    return false;                     // If there are no opening brackets to match, return false
+                }
+            }
+        }
+        if(s.empty())             // After processing all characters, if the stack is empty, return true
+            return true;
+        else
+            return false;           // If there are unmatched opening brackets left in the stack, return false
+    }
+};

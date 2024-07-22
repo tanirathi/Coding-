@@ -1,0 +1,26 @@
+class Solution{
+public:
+    // Function to find the maximum product of a contiguous subarray
+    long long maxProduct(vector<int> arr, int n) {
+        long long product = 1;  // Variable to store the product of the current subarray
+        long long ans = INT_MIN;  // Variable to store the maximum product found so far
+
+        // Iterate through each element in the array
+        for (int i = 0; i < n; i++) {
+            product = 1;  // Reset the product for the new subarray starting at index i
+
+            // Iterate through the subarray starting at index i
+            for (int j = i; j < n; j++) {
+                if (arr[j] == 0) {  // If the current element is zero
+                    if (ans < 0) {  // If no positive product has been found yet
+                        ans = 0;  // Zero is the best we can do in this case
+                    }
+                    break;  // Break the inner loop since the product will be zero from here
+                }
+                product = arr[j] * product;  // Update the product of the current subarray
+                ans = max(ans, product);  // Update the maximum product found so far
+            }
+        }
+        return ans; 
+    }
+};

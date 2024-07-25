@@ -1,0 +1,10 @@
+class Solution{
+    public:
+ 
+    int kthSmallest(int arr[], int l, int r, int k) {    // Function to find the k-th smallest element in an array
+    int n = r + 1;      // Calculate the size of the array
+    sort(arr, arr + n);       // Sort the array in ascending order
+    
+    return arr[k - 1];       // Return the k-th smallest element (1-based index, hence k-1 for 0-based indexing)
+ }
+};

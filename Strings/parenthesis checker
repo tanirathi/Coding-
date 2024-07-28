@@ -1,35 +1,22 @@
-class Solution{
-public:
-    bool ispar(string x)                 // Function to check if brackets are balanced or not.
-    {
-        stack<char> s;                          // Creating a stack to store opening brackets
-        for(int i = 0; i < x.length(); i++){              // Loop through each character in the string
-            char ch = x[i]; // Get the current character
-
-            if(ch == '(' || ch == '{' || ch == '['){         // If the character is an opening bracket, push it onto the stack
-                s.push(ch);
+class Solution {
+    public:
+    // Function to check if the given string of parentheses is valid
+    bool ispar(string str) {
+        stack<char> temp;  // Stack to hold opening parentheses
+        
+        for(int i = 0; i < str.length(); i++) {  // Iterate through each character in the string
+            if (temp.empty()) {        // If the stack is empty, push the current character
+                temp.push(str[i]);
             }
-            else{
-                // If the character is a closing bracket
-                if(!s.empty()){                                   // Check if the stack is not empt
-                    char top = s.top();                           // Get the top element of the stack
-                    
-                    // If the current closing bracket matches the corresponding opening bracket
-                    if((ch == ')' && top == '(') || (ch == '}' && top == '{') || (ch == ']' && top == '[')){
-                        s.pop();                         // Pop the matching opening bracket from the stack
-                    }
-                    else{
-                        return false;                // If the closing bracket doesn't match the opening bracket, return false
-                    }
-                }
-                else {
-                    return false;                     // If there are no opening brackets to match, return false
-                }
+            else if ((temp.top() == '(' && str[i] == ')') ||      // Check for matching pairs of parentheses
+                     (temp.top() == '{' && str[i] == '}') ||
+                     (temp.top() == '[' && str[i] == ']')) {
+                temp.pop();  // Pop the top of the stack if it's a matching pair
+            }
+            else {                       // If not a matching pair, push the current character
+                temp.push(str[i]);
             }
         }
-        if(s.empty())             // After processing all characters, if the stack is empty, return true
-            return true;
-        else
-            return false;           // If there are unmatched opening brackets left in the stack, return false
+        return temp.size() == 0;         // If the stack is empty, the parentheses are valid
     }
 };

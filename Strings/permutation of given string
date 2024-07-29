@@ -1,0 +1,16 @@
+class Solution
+{
+	public:
+		vector<string>find_permutation(string S)
+		{
+		    sort(S.begin(),S.end());
+		    string k=S;
+		    vector<string>v;
+		    v.push_back(S);
+		    while(next_permutation(S.begin(),S.end()))
+		    {
+		        v.push_back(S);
+		    }
+		    return v;
+		}
+};

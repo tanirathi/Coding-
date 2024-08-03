@@ -1,3 +1,4 @@
+
 class Solution{
     int minEle;
     stack<int> s;

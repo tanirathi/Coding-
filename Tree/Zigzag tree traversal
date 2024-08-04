@@ -1,28 +1,34 @@
 
-class Solution{
-    public:
-     // Create a vector to store the zigzag traversal result
-vector<int> zigZagTraversal(Node* root){
-    vector<int> ans;
-    queue<Node*> q;
-    if (!root) return ans;
-    q.push(root);
-    int f = 1;
-    while (!q.empty()) {
-        vector<int> temp;
-        int sz = q.size();       // Initialize a flag to track the direction of traversal
-        while (sz--) {
-            Node* t = q.front();
-            temp.push_back(t->data);
-            q.pop();
-            if (t->left) q.push(t->left);
-            if (t->right) q.push(t->right);
+vector<int> findSpiral(Node *root) {
+    vector<int> result; 
+    if (root == nullptr) return result; 
+    if (root->left == nullptr && root->right == nullptr) { // If the root has no children
+        result.push_back(root->data);                  // Add the root's data to the result
+        return result;
+    }
+
+    stack<Node*> s1;           // Create a stacks to hold nodes for one level and next level
+    stack<Node*> s2;
+
+    s1.push(root);            
+    while (!s1.empty() || !s2.empty()) {            // While there are nodes in either stack
+        while (!s1.empty()) {                         // Process all nodes in the first stack
+            Node* temp = s1.top();                           // Get the top node
+            s1.pop(); 
+            result.push_back(temp->data);                     // Add the node's data to the result
+
+            if (temp->right != nullptr) s2.push(temp->right);           // Push the right child to the second stack if it exists
+            if (temp->left != nullptr) s2.push(temp->left); 
         }
         
-        if (f % 2 == 0) reverse(temp.begin(), temp.end());
-        for (int i = 0; i < temp.size(); i++) ans.push_back(temp[i]);
-        f++; // Increment f by 1 for each level
+        while (!s2.empty()) {                    // Process all nodes in the second stack
+            Node* temp = s2.top(); 
+            s2.pop(); 
+            result.push_back(temp->data);                // Add the node's data to the result
+
+            if (temp->left != nullptr) s1.push(temp->left); 
+            if (temp->right != nullptr) s1.push(temp->right); 
+        }
     }
-    return ans;
-  }
-};
+    return result; 
+}

@@ -1,0 +1,32 @@
+class Solution {
+public:
+    bool areIdentical(Node* root1, Node* root2) {
+        // If both trees are empty, they are identical
+        if (root1 == nullptr && root2 == nullptr) {
+            return true;
+        }
+        // If one of the trees is empty, they are not identical
+        if (root1 == nullptr || root2 == nullptr) {
+            return false;
+        }
+        // Check if the data of both roots is the same and recursively check for left and right subtrees
+        return (root1->data == root2->data) &&
+               areIdentical(root1->left, root2->left) &&
+               areIdentical(root1->right, root2->right);
+    }
+    
+    bool isSubTree(Node* T, Node* S) {
+        if (S == nullptr) {          // An empty tree S is always a subtree
+            return true;
+        }
+        if (T == nullptr) {      // If tree T is empty, then S cannot be a subtree of  T
+            return false;
+        }
+        // If the current nodes match, check if the subtrees are identical
+        if (T->data == S->data && areIdentical(T, S)) {
+            return true;
+        }
+        // Otherwise, recursively check left and right subtrees of T
+        return isSubTree(T->left, S) || isSubTree(T->right, S);
+    }
+};

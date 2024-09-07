@@ -1,3 +1,4 @@
+
 class Solution {
     public:
     // Function to check if the given string of parentheses is valid

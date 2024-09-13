@@ -1,3 +1,4 @@
+
 class Solution{
 public:	
 	int matSearch (vector<vector<int>> &mat, int N, int M, int X)

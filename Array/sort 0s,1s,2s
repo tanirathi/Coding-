@@ -1,9 +1,7 @@
-class Solution
-{
-    public:
-    void sort012(int a[], int n)   //  takes two parameters: an array a of integers and an integer n
-    {
-        sort(a,a+n);  // a is the pointer to the first element of the array and a + n is the past the last element of the array. 
+class Solution {
+  public:
+    void sort012(vector<int>& arr) {       //  takes two parameters
+        // code here
+        sort(arr.begin(),arr.end());
     }
-    
 };

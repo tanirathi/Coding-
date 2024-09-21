@@ -1,3 +1,4 @@
+
 class MinStack {
 	public:
 		stack<int>s,minn;

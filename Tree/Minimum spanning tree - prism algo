@@ -1,0 +1,38 @@
+typedef pair<int, pair<int, int>> p;
+
+class Solution
+{
+	public:
+	//Function to find sum of weights of edges of the Minimum Spanning Tree.
+    int spanningTree(int V, vector<vector<int>> adj[])
+    {
+        vector<int> vis(V, 0);
+        int sum = 0;
+        priority_queue<p, vector<p>, greater<p>> pq; // wt, node, parent
+        pq.push({0, {0, -1}});
+        
+        while(!pq.empty()){
+            auto it = pq.top();
+            pq.pop();
+            int wt = it.first;
+            int node = it.second.first;
+            int parent = it.second.second;
+            
+            if(vis[node]) continue;
+            
+            vis[node] = 1;
+            
+            sum += wt;
+            
+            for(auto ele : adj[node]){
+                int v = ele[0];
+                int edwt = ele[1];
+                
+                if(!vis[v]){
+                    pq.push({edwt, {v, node}});
+                }
+            }
+        }
+        
+        return sum;
+    }
